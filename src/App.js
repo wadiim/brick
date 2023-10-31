@@ -6,6 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<div>Brick</div>} />
         <Route path="/auth" element={<Auth />} />
       </Routes>
     </BrowserRouter>
