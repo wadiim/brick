@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import './Auth.css';
 
-function Auth() {
-  let [authMode, setAuthMode] = useState("signin")
+function Auth({ isSignIn }) {
+  let [authMode, setAuthMode] = useState(isSignIn ? "signin" : "signup")
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
@@ -91,7 +91,7 @@ function Auth() {
             </button>
           </div>
           <p className="text-center mt-2">
-            Forgot <span>password?</span>
+            Forgot <span className="link-primary">password?</span>
           </p>
         </div>
       </form>
