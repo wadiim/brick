@@ -1,5 +1,7 @@
-import React, { useState } from "react"
 import './Auth.css';
+
+import React, { useState } from "react"
+import { Link } from "react-router-dom";
 
 function Auth({ isSignIn }) {
   let [authMode, setAuthMode] = useState(isSignIn ? "signin" : "signup")
@@ -36,11 +38,11 @@ function Auth({ isSignIn }) {
                 placeholder="Enter password"
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+            <Link to="/dashboard" className="d-grid gap-2 mt-3">
+              <button type="button" className="btn btn-primary">
                 Submit
               </button>
-            </div>
+            </Link>
             <p className="text-center mt-2">
               Forgot <span className="link-primary">password?</span>
             </p>
@@ -85,11 +87,11 @@ function Auth({ isSignIn }) {
               placeholder="Password"
             />
           </div>
-          <div className="d-grid gap-2 mt-3">
+          <Link to="/dashboard" className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
-          </div>
+          </Link>
           <p className="text-center mt-2">
             Forgot <span className="link-primary">password?</span>
           </p>
