@@ -5,7 +5,7 @@ function Start({ setIsSignIn }) {
   return (
     <div className="Start-container">
       <div className="Header-container">
-        <h1 style={{ fontWeight: 900 }}>Brick</h1>
+        <h1 style={{ fontWeight: 900 }}>Fupload</h1>
       </div>
       <div className="Button-container">
         <Link to="/auth">

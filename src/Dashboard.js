@@ -13,7 +13,7 @@ function Dashboard() {
       <header className="navbar navbar-expand-lg bd-navbar sticky-top bg-primary">
         <nav className="container-xxl d-inline-flex justify-content-between">
           <div className="navbar-brand">
-            Brick
+            Fupload
           </div>
           <form className="d-flex" role="search">
             <input
