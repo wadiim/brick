@@ -1,3 +1,5 @@
+import './Viewer.css';
+
 import { useState } from 'react';
 import FileViewer from 'react-file-viewer';
 
@@ -19,9 +21,7 @@ function Viewer({show, file}) {
     );
   } else {
     return (
-      <>
-       <FileViewer fileType={file.type} filePath={file.path} />
-      </>
+     <FileViewer fileType={file.type} filePath={file.path} />
     );
   }
 }
