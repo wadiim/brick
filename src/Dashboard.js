@@ -30,7 +30,7 @@ function Dashboard() {
           <div className="col-4 min-vh-100">
             <FileList files={files} setFileSelected={setFileSelected} />
           </div>
-          <div className="col min-vh-100">
+          <div className="col min-vh-100 pt-3">
             <Viewer show={true} file={files.length > 0 ? files.find((e) => e.id === fileSelected) : null} />
           </div>
         </div>

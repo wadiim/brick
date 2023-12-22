@@ -2,16 +2,16 @@ function FileList({ files, setFileSelected }) {
   return (
     <ul className="list-group m-4">
       {
-        files.map(files => (
+        files.map(f => (
           <li
-            key={files.id}
+            key={f.id}
             className="list-group-item text-center p-0 border-0"
           >
             <button
               className="btn btn-outline-primary w-100 mb-2 mx-0"
-              onClick={() => setFileSelected(files.id)}
+              onClick={() => setFileSelected(f.id)}
             >
-              {files.name}
+              {f.name}
             </button>
           </li>
         ))
