@@ -21,13 +21,17 @@ function Dashboard() {
     ]);
   }
 
+  function deleteFile(id) {
+    setFiles(files.filter((e) => e.id !== id));
+  }
+
   return (
     <>
       <Header setFilter={setFilter} />
       <div className="container-fluid m-0 p-0 vh-100 vw-100">
         <div className="row vh-100">
           <div className="col-4 vh-100">
-            <FileList files={files.filter(filter)} setFileSelected={setFileSelected} />
+            <FileList files={files.filter(filter)} setFileSelected={setFileSelected} deleteFile={deleteFile} />
           </div>
           <div className="col vh-100 pt-3">
             <Viewer show={true} file={files.length > 0 ? files.find((e) => e.id === fileSelected) : null} />
