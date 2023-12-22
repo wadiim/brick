@@ -21,7 +21,7 @@ function Viewer({show, file}) {
     );
   } else {
     return (
-     <FileViewer fileType={file.type} filePath={file.path} />
+     <FileViewer key={file.id} fileType={file.type} filePath={file.path} />
     );
   }
 }

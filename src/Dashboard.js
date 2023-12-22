@@ -7,8 +7,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-let nextId = 0;
-
 function Dashboard() {
   const [files, setFiles] = useState([]);
   const [fileSelected, setFileSelected] = useState();
@@ -19,7 +17,7 @@ function Dashboard() {
 
     setFiles([
       ...files,
-      { id: nextId++, path: path, name: name, type: type }
+      { id: window.crypto.randomUUID(), path: path, name: name, type: type }
     ]);
   }
 
