@@ -1,5 +1,6 @@
 import './Header.css'
 
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faRightFromBracket,
@@ -7,7 +8,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ setFilter }) {
+  const [searchText, setSearchText] = useState("");
+
   return (
     <header className="navbar navbar-expand-lg bd-navbar sticky-top bg-primary">
       <nav className="container-xxl d-inline-flex justify-content-between">
@@ -20,10 +23,13 @@ function Header() {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onChange={(e) => { setSearchText(e.target.value); }}
           />
           <button
             className="btn btn-secondary"
-            type="button">
+            type="button"
+            onClick = { () => ( setFilter(() => (e) => e.name.indexOf(searchText) > -1) )}
+          >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>

@@ -12,6 +12,7 @@ let nextId = 0;
 function Dashboard() {
   const [files, setFiles] = useState([]);
   const [fileSelected, setFileSelected] = useState();
+  const [filter, setFilter] = useState(() => ((e) => e));
 
   function addFile(name, path) {
     let type = name.split('.').pop()
@@ -24,11 +25,11 @@ function Dashboard() {
 
   return (
     <>
-      <Header />
+      <Header setFilter={setFilter} />
       <div className="container m-0 p-0 min-vh-100">
         <div className="row min-vh-100">
           <div className="col-4 min-vh-100">
-            <FileList files={files} setFileSelected={setFileSelected} />
+            <FileList files={files.filter(filter)} setFileSelected={setFileSelected} />
           </div>
           <div className="col min-vh-100 pt-3">
             <Viewer show={true} file={files.length > 0 ? files.find((e) => e.id === fileSelected) : null} />
