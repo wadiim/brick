@@ -13,13 +13,12 @@ function Dashboard() {
   const [files, setFiles] = useState([]);
   const [fileSelected, setFileSelected] = useState();
 
-  function addFile(path) {
-    let filename = path.split('/').pop()
-    let filetype = filename.split('.').pop()
+  function addFile(name, path) {
+    let type = name.split('.').pop()
 
     setFiles([
       ...files,
-      { id: nextId++, path: path, name: filename, type: filetype }
+      { id: nextId++, path: path, name: name, type: type }
     ]);
   }
 
@@ -45,7 +44,7 @@ function Dashboard() {
 
           input.onchange = e => {
             for (let f of e.target.files) {
-              addFile(f.name);
+              addFile(f.name, window.URL.createObjectURL(f));
             }
           }
 
