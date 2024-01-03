@@ -16,19 +16,52 @@ function Auth({ isSignIn }) {
   let [confirmationCode, setConfirmationCode] = useState("");
   let [logged, setLogged] = useState(false);
 
-  const changeAuthMode = () => {
+  const ChangeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
+  }
+
+  const AddUserToDatabase = async (userID, userName, email) => {
+    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/user/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userID: userID,
+        userName: userName,
+        email: email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  const AddUserBucket = async (userID) => {
+    let bucketName = userID.substring(0, 12)
+    console.log("Creating user bucket: " + bucketName)
+    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/create?bucketName=' + bucketName, {
+      method: 'POST',
+    }).catch((err) => {
+        alert(err);
+    });
   }
 
   const SignUp = (event) => {
     event.preventDefault();
-    
+
     UserPool.signUp(email, password, [new CognitoUserAttribute({Name: 'name', Value: fullname})], null, (err, data) => {
       if (err) {
         alert(err);
       } else {
         setClientId(clientId = data.user.pool.clientId);
         setScene(scene = "notVerified");
+        AddUserToDatabase(clientId, fullname, email);
+        AddUserBucket(clientId);
       }
     })
   }
@@ -203,7 +236,7 @@ function Auth({ isSignIn }) {
             <h3 className="Auth-form-title">Sign In</h3>
             <div className="text-center">
               Not registered yet?{" "}
-              <span className="link-primary" onClick={changeAuthMode}>
+              <span className="link-primary" onClick={ChangeAuthMode}>
                 Sign Up
               </span>
             </div>
@@ -250,7 +283,7 @@ function Auth({ isSignIn }) {
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
             Already registered?{" "}
-            <span className="link-primary" onClick={changeAuthMode}>
+            <span className="link-primary" onClick={ChangeAuthMode}>
               Sign In
             </span>
           </div>
