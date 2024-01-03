@@ -42,7 +42,7 @@ function Auth({ isSignIn }) {
   }
 
   const AddUserBucket = async (userID) => {
-    let bucketName = userID.substring(0, 12)
+    let bucketName = userID.substring(0, 12).replace("@", "-");
     console.log("Creating user bucket: " + bucketName)
     fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/create?bucketName=' + bucketName, {
       method: 'POST',
@@ -60,8 +60,8 @@ function Auth({ isSignIn }) {
       } else {
         setClientId(clientId = data.user.pool.clientId);
         setScene(scene = "notVerified");
-        AddUserToDatabase(clientId, fullname, email);
-        AddUserBucket(clientId);
+        AddUserToDatabase(email, fullname, email);
+        AddUserBucket(email);
       }
     })
   }
@@ -190,7 +190,7 @@ function Auth({ isSignIn }) {
         <form className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Account verified</h3>
-            <Link to="/dashboard" className="d-grid gap-2 mt-3">
+            <Link to="/dashboard" state={{ email }} className="d-grid gap-2 mt-3">
               <button type="button" className="btn btn-primary">
                 Go to dashboard
               </button>
@@ -265,7 +265,7 @@ function Auth({ isSignIn }) {
                 Submit
               </button>
             </div>
-            { logged && ( <Navigate to="/dashboard" replace={true} /> ) }
+            { logged && ( <Navigate to="/dashboard" replace={true} state={{ email }} /> ) }
             
             <p className="text-center mt-2">
               Forgot <span className="link-primary" onClick={ForgotPassword}>password?</span>
@@ -317,7 +317,7 @@ function Auth({ isSignIn }) {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <Link to="/dashboard" className="d-grid gap-2 mt-3">
+          <Link to="/dashboard" state={{ email }} className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary" onClick={SignUp}>
               Submit
             </button>

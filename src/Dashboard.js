@@ -6,7 +6,7 @@ import {
   faPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useReducer } from 'react';
-import UserPool from './UserPool';
+import { useLocation } from "react-router-dom";
 
 function Dashboard() {
   const [files, setFiles] = useState([]);
@@ -14,8 +14,11 @@ function Dashboard() {
   const [filter, setFilter] = useState(() => ((e) => e));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const userID = UserPool.getClientId();
-  const bucketName = userID.substring(0, 12);
+  const { state } = useLocation();
+  const { email } = state;
+
+  const userID = email;
+  const bucketName = userID.substring(0, 12).replace("@", "-");
 
   useEffect(() => {
     let loadedFiles = []
