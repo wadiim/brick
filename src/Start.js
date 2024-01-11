@@ -1,15 +1,15 @@
 import './Start.css';
 import { Link } from "react-router-dom";
-//import background from "./img/background.jpg";
+import logo from "./img/logo.png";
 
 function Start({ setIsSignIn }) {
   return (
-    <div
-      className="Start-container"
-      //style={{ backgroundImage: `url(${background})` }}
-    >
+    <div className="Start-container">
       <div className="Header-container">
-        <h1 style={{ fontWeight: 900 }}>Fupload</h1>
+        <img
+          src={logo} alt="Logo"
+          style={{ maxHeight: '55vh', maxWidth: '55vh', marginBottom: '10%' }}
+        />
       </div>
       <div className="Button-container">
         <Link to="/auth">
