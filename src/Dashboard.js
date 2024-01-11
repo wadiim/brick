@@ -43,7 +43,11 @@ function Dashboard() {
         }
       })
       .catch((err) => {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       })
       .finally(() => {
         forceUpdate();
@@ -80,7 +84,11 @@ function Dashboard() {
         );
       })
       .catch((err) => {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       });
   }
 

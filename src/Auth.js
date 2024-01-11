@@ -5,6 +5,7 @@ import { Link, Navigate } from "react-router-dom";
 import UserPool from './UserPool';
 import { AuthenticationDetails, CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { CognitoIdentityProviderClient, ConfirmSignUpCommand } from '@aws-sdk/client-cognito-identity-provider'
+import Swal from "sweetalert2";
 
 function Auth({ isSignIn }) {
   let [authMode, setAuthMode] = useState(isSignIn ? "signin" : "signup")
@@ -37,7 +38,11 @@ function Auth({ isSignIn }) {
         console.log(data);
       })
       .catch((err) => {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       });
   }
 
@@ -47,7 +52,11 @@ function Auth({ isSignIn }) {
     fetch('https://fupload-b639097c0d92.herokuapp.com/file/create?bucketName=' + bucketName, {
       method: 'POST',
     }).catch((err) => {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
     });
   }
 
@@ -56,7 +65,11 @@ function Auth({ isSignIn }) {
 
     UserPool.signUp(email, password, [new CognitoUserAttribute({Name: 'name', Value: fullname})], null, (err, data) => {
       if (err) {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       } else {
         setClientId(clientId = data.user.pool.clientId);
         setScene(scene = "notVerified");
@@ -77,8 +90,12 @@ function Auth({ isSignIn }) {
         console.log(data);
         setScene(scene = "changePassword");
       },
-      onFailure: (_) => {
-        alert("Something went wrong while reseting password")
+      onFailure: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       }
     })
   }
@@ -94,8 +111,12 @@ function Auth({ isSignIn }) {
         console.log(success);
         setScene(scene = "signin")
       },
-      onFailure: (error) => {
-        console.error(error);
+      onFailure: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       }
     })
   }
@@ -112,7 +133,11 @@ function Auth({ isSignIn }) {
     send.then((_) => {
       setScene(scene = "verified"); 
     }).catch((err) => {
-      alert(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err,
+      });
     })
   };
 
@@ -131,7 +156,11 @@ function Auth({ isSignIn }) {
         console.log(data);
         user.getUserAttributes((err, res) => {
           if (err) {
-            alert(err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err,
+            });
           } else {
             setLogged(true);
             setName(fullname = res[2].Value);
@@ -139,7 +168,11 @@ function Auth({ isSignIn }) {
         });
       },
       onFailure: (err) => {
-        alert(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        });
       },
       newPasswordRequired: (data) => {
         console.log('newPassword:', data);
