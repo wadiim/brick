@@ -21,7 +21,7 @@ function Auth({ isSignIn }) {
   }
 
   const AddUserToDatabase = async (userID, userName, email) => {
-    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/user/add', {
+    fetch('https://fupload-b639097c0d92.herokuapp.com/user/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function Auth({ isSignIn }) {
   const AddUserBucket = async (userID) => {
     let bucketName = userID.substring(0, 12).replace("@", "-");
     console.log("Creating user bucket: " + bucketName)
-    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/create?bucketName=' + bucketName, {
+    fetch('https://fupload-b639097c0d92.herokuapp.com/file/create?bucketName=' + bucketName, {
       method: 'POST',
     }).catch((err) => {
         alert(err);

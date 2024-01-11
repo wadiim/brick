@@ -23,7 +23,7 @@ function Dashboard() {
   useEffect(() => {
     let loadedFiles = []
 
-    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/getUserFiles/' + userID)
+    fetch('https://fupload-b639097c0d92.herokuapp.com/file/getUserFiles/' + userID)
       .then((response) => response.json())
       .then((data) => {
         console.log("User files:")
@@ -64,7 +64,7 @@ function Dashboard() {
     const formData = new FormData();
     formData.append("file", blob);
 
-    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/upload?bucketName='
+    fetch('https://fupload-b639097c0d92.herokuapp.com/file/upload?bucketName='
           + bucketName + '&fileID=' + id + '&fileVersion=1.0&userID=' + userID, {
       method: "POST",
       body: formData,
@@ -81,7 +81,7 @@ function Dashboard() {
   const deleteFile = async (id) => {
     setFiles(files.filter((e) => e.id !== id));
 
-    fetch('http://sampleapp.us-east-1.elasticbeanstalk.com/file/deleteFile?id='
+    fetch('https://fupload-b639097c0d92.herokuapp.com/file/deleteFile?id='
           + id + '&bucketName=' + bucketName, {
         method: "DELETE",
     });
