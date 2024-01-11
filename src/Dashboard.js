@@ -95,10 +95,23 @@ function Dashboard() {
   const deleteFile = async (id) => {
     setFiles(files.filter((e) => e.id !== id));
 
-    fetch('https://fupload-b639097c0d92.herokuapp.com/file/deleteFile?id='
-          + id + '&bucketName=' + bucketName, {
-        method: "DELETE",
-    });
+    try {
+      fetch('https://fupload-b639097c0d92.herokuapp.com/file/deleteFile?id='
+            + id + '&bucketName=' + bucketName, {
+          method: "DELETE",
+      });
+      Swal.fire(
+        'File deleted successfully!',
+        '',
+        'success'
+      );
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err,
+      });
+    }
 
   }
 
