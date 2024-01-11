@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faTrash
+  faTrash, faDownload
 } from '@fortawesome/free-solid-svg-icons';
 
-function FileItem({ file, setFileSelected, deleteFile }) {
+function FileItem({ file, setFileSelected, deleteFile, downloadFile }) {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ function FileItem({ file, setFileSelected, deleteFile }) {
       onMouseOut={() => setIsHovering(false)}
     >
       <button
-        className="btn btn-outline-primary mb-2 mx-0 col-9"
+        className="btn btn-outline-primary mb-2 mx-0 col-7"
         onClick={() => setFileSelected(file.id)}
       >
         {file.name}
@@ -27,16 +27,28 @@ function FileItem({ file, setFileSelected, deleteFile }) {
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
+      <button
+        className="btn btn-outline-secondary mb-2 ms-2 col-2"
+        onClick={() => downloadFile(file.id)}
+        style={{ visibility: isHovering ? "visible" : "hidden" }}
+      >
+        <FontAwesomeIcon icon={faDownload} />
+      </button>
     </li>
   );
 }
 
-function FileList({ files, setFileSelected, deleteFile }) {
+function FileList({ files, setFileSelected, deleteFile, downloadFile }) {
   return (
     <ul className="list-group m-4">
       {
         files.map(f => (
-          <FileItem file={f} setFileSelected={setFileSelected} deleteFile={deleteFile} />
+          <FileItem
+            file={f}
+            setFileSelected={setFileSelected}
+            deleteFile={deleteFile}
+            downloadFile={downloadFile}
+          />
         ))
       }
     </ul>

@@ -88,13 +88,29 @@ function Dashboard() {
 
   }
 
+  const downloadFile = (id) => {
+    var file = files.filter((e) => e.id === id)[0];
+    var link = document.createElement("a");
+    link.download = file.name;
+    link.href = file.path;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    console.log("file.fileURL: " + file.fileURL);
+  }
+
   return (
     <>
       <Header setFilter={setFilter} />
       <div className="container-fluid m-0 p-0 vh-100 vw-100">
         <div className="row vh-100">
           <div className="col-4 vh-100">
-            <FileList files={files.filter(filter)} setFileSelected={setFileSelected} deleteFile={deleteFile} />
+            <FileList
+              files={files.filter(filter)}
+              setFileSelected={setFileSelected}
+              deleteFile={deleteFile}
+              downloadFile={downloadFile}
+            />
           </div>
           <div className="col vh-100 pt-3">
             <Viewer show={true} file={files.length > 0 ? files.find((e) => e.id === fileSelected) : null} />
