@@ -1,3 +1,4 @@
+import "./Dashboard.css";
 import Header from "./Header";
 import FileList from "./FileList";
 import Viewer from "./Viewer";

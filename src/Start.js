@@ -1,9 +1,13 @@
 import './Start.css';
 import { Link } from "react-router-dom";
+//import background from "./img/background.jpg";
 
 function Start({ setIsSignIn }) {
   return (
-    <div className="Start-container">
+    <div
+      className="Start-container"
+      //style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="Header-container">
         <h1 style={{ fontWeight: 900 }}>Fupload</h1>
       </div>

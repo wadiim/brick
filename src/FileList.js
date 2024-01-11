@@ -13,6 +13,7 @@ function FileItem({ file, setFileSelected, deleteFile, downloadFile }) {
       className="list-group-item text-center p-0 border-0 container-fluid"
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
+      style={{ backgroundColor: "#dfdbe5" }}
     >
       <button
         className="btn btn-outline-primary mb-2 mx-0 col-7"
@@ -40,18 +41,22 @@ function FileItem({ file, setFileSelected, deleteFile, downloadFile }) {
 
 function FileList({ files, setFileSelected, deleteFile, downloadFile }) {
   return (
-    <ul className="list-group m-4">
-      {
-        files.map(f => (
-          <FileItem
-            file={f}
-            setFileSelected={setFileSelected}
-            deleteFile={deleteFile}
-            downloadFile={downloadFile}
-          />
-        ))
-      }
-    </ul>
+    <div style={{ backgroundColor: "#dfdbe5" }}>
+      <ul
+        className="list-group m-4"
+      >
+        {
+          files.map(f => (
+            <FileItem
+              file={f}
+              setFileSelected={setFileSelected}
+              deleteFile={deleteFile}
+              downloadFile={downloadFile}
+            />
+          ))
+        }
+      </ul>
+    </div>
   );
 }
 
