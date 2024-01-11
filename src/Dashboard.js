@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useReducer } from 'react';
 import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Dashboard() {
   const [files, setFiles] = useState([]);
@@ -72,6 +73,11 @@ function Dashboard() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        Swal.fire(
+          'File uploaded successfully!',
+          '',
+          'success'
+        );
       })
       .catch((err) => {
         alert(err);
