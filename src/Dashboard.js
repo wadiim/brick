@@ -1,4 +1,3 @@
-import "./Dashboard.css";
 import Header from "./Header";
 import FileList from "./FileList";
 import Viewer from "./Viewer";
@@ -130,7 +129,10 @@ function Dashboard() {
   return (
     <>
       <Header setFilter={setFilter} />
-      <div className="container-fluid m-0 p-0 vh-100 vw-100">
+      <div
+        className="container-fluid m-0 p-0 vh-100 vw-100"
+        style={{ backgroundColor: '#dfdbe5' }}
+      >
         <div className="row vh-100">
           <div className="col-4 vh-100">
             <FileList
