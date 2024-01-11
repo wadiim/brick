@@ -128,7 +128,7 @@ function Dashboard() {
 
   return (
     <>
-      <Header setFilter={setFilter} />
+      <Header setFilter={setFilter} email={email} />
       <div
         className="container-fluid m-0 p-0 vh-100 vw-100"
         style={{ backgroundColor: '#dfdbe5' }}

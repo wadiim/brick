@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 
-function Header({ setFilter }) {
+function Header({ setFilter, email }) {
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -28,12 +28,23 @@ function Header({ setFilter }) {
           <button
             className="btn btn-secondary"
             type="button"
-            onClick = { () => ( setFilter(() => (e) => e.name.indexOf(searchText) > -1) )}
+            onClick = {() => ( setFilter(() => (e) => e.name.indexOf(searchText) > -1) )}
           >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>
-        <div className="nav-item">
+        <div className="nav-item, d-flex">
+          <span
+            style={{
+              textDecoration: "None",
+              marginTop: "auto",
+              marginBottom: "auto",
+              marginRight: "10px",
+              color: "white"
+            }}
+          >
+            { email }
+          </span>
           <Link to="/">
             <button
               type="button"
